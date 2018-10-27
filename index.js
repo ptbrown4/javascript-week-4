@@ -17,14 +17,14 @@ var guestList = [
     'red'
 ];
 
-console.log(guestList[2]);
+// console.log(guestList[2]);
 
 var userList = [
     user1,
     user2
 ];
 
-console.log(userList[1].firstName);
+// console.log(userList[1].firstName);
 
 var addressBook = [
     entry1 = {firstName: 'Sarah', 
@@ -70,6 +70,12 @@ function printFirstNames(add){
     };
 };
 
+// function printContact(x){
+//     for(var i=0; i < x.length; i++){
+//         console.log(x[i])
+//     }
+// }
+
 var ourFunction = function(thing){
 for(var i = 0; i < thing.length; i++){
     console.log(thing.lastName);
@@ -81,10 +87,34 @@ function ourConsole(){
     }
 };
 
-var mgs = ourConsole();
+// var mgs = ourConsole();
 
-mgs();
+// mgs();
 
 // printFirstNames(addressBook);
 
 // ourFunction(addressBook);
+
+function forEach(arr1, func1){
+for(var i=0; i<addressBook.length; i++){
+    func1(arr1[i]);
+}};
+
+function printName(x){
+    console.log(x.firstName, x.lastName)
+}
+
+function printAddr(x){
+    console.log(x.address)
+}
+
+// forEach(addressBook, printName);
+// forEach(addressBook, printAddr);
+
+// forEach(addressBook, function(x){console.log(x.phone)});
+
+var printHello = function(){
+    console.log('Hello Everyone!!!')
+};
+
+setTimeout(function(){console.log('Hello World')}, 5000);
