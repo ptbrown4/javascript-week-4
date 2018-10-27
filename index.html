@@ -3,19 +3,51 @@
         <title>Getting all the things</title>
     </head>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <body>
-        <ul id="toDoList">
-
-        </ul>
-        <script>
+          <script>
+            var url = "https://jsonplaceholder.typicode.com/todos";
+          function getToDo(){
+              var item = $("#item").val();
+              var todo = $("#todo");
+              var newUrl = url + '/' + item;
+              $.getJSON(newUrl, function(data){
+                  todo.html("");
+                  todo.append('<h3>' + data.title + '</h3>');
+                  todo.append('<h4>' + data.completed + '</h4>');
+                  todo.append('<h5>UserID: ' + data.userId + '</h5>');
+              });
+          } 
             // $("Selector")
             // var $ = new jQuery
             // document.getElementById("#toDoList")
             // $("#toDoList")
             $(function(){
-                alert("Wow");
+                // setTimeout(function(){alert("Wow")}, 5000);
+                var toDoList = $("#toDoList");
+                $.getJSON(url, function(data){
+                    for (var i=0; i<data.length; i++){
+                        toDoList.append('<li id="todo' + 
+                        data[i].id +
+                        '">' + 
+                        data[i].title + 
+                        "</li>");
+                        if(data[i].completed){
+                            $("#todo" + data[i].id).css('color','green');
+                        } else {
+                            $("#todo" + data[i].id).css('color','red');
+                        }
+                    }
+                });
             });
+
+            //Eloquent Javascript
         </script>
+    <body>
+        <input type="text" id="item" placeholder="Todo Number">
+        <input type="button" value="Pick" onclick="getToDo()">
+        <div id="todo"></div>
+        <ol id="toDoList"></ol>
+        
+            
 
     </body>
 </html>
